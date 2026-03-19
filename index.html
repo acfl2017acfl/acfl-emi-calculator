@@ -10,42 +10,41 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #e85222, #ff7a4d);
-  display: flex;
-  justify-content: center;
+  background: #e85222; /* full orange background */
 }
 
-.container {
-  width: 100%;
+.app-wrapper {
   max-width: 420px;
-  background: #fff7f2;
+  margin: auto;
+  background: #fff7f2; /* cream */
   min-height: 100vh;
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
 }
 
 .logo {
   display: block;
   margin: 10px auto;
-  width: 140px;
+  width: 130px;
 }
 
 h1 {
   text-align: center;
   color: #e85222;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .card {
-  background: #fff;
-  padding: 15px;
+  background: #ffffff;
+  padding: 14px;
   border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-  margin-bottom: 15px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+  margin-bottom: 12px;
 }
 
 label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #555;
 }
@@ -58,21 +57,23 @@ input, select {
   border-radius: 6px;
   border: 1px solid #ddd;
   font-size: 14px;
+  height: 38px;
 }
 
 input:focus, select:focus {
   border-color: #e85222;
+  box-shadow: 0 0 5px rgba(232,82,34,0.3);
   outline: none;
 }
 
 button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   background: #e85222;
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -82,19 +83,20 @@ button:hover {
 }
 
 .result {
-  background: #fff5f1;
-  border-left: 5px solid #e85222;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 15px;
+  background: #fff1ea;
+  border-left: 4px solid #e85222;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: none;
 }
 
 .result div {
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 .highlight {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
   color: #e85222;
 }
@@ -104,7 +106,7 @@ button:hover {
 
 <body>
 
-<div class="container">
+<div class="app-wrapper">
 
 <img src="ACFL Logo PNG WhiteBG.png" class="logo">
 
@@ -138,13 +140,13 @@ button:hover {
 
 </div>
 
-<div class="result" id="output" style="display:none;"></div>
+<div class="result" id="output"></div>
 
 </div>
 
 <script>
 
-// FULL INSURANCE TABLE (same as before)
+// FULL INSURANCE TABLE
 const insuranceRates = {
 18:{12:213.56,18:296.44,24:377.10,30:458.03,36:536.80},
 19:{12:219.48,18:304.92,24:388.09,30:471.18,36:552.08},
