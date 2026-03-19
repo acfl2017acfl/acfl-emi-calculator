@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACFL EMI Calculator</title>
+<title>ACFL EMI CALCULATOR</title>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -18,33 +22,32 @@ body {
   margin: auto;
   background: #fff7f2;
   min-height: 100vh;
-  padding: 15px;
-  box-sizing: border-box;
+  padding: 14px;
 }
 
 .logo {
   display: block;
-  margin: 10px auto;
-  width: 130px;
+  margin: 8px auto;
+  width: 120px;
 }
 
 h1 {
   text-align: center;
   color: #e85222;
-  margin-bottom: 15px;
-  font-size: 20px;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
 .card {
   background: #ffffff;
-  padding: 14px;
-  border-radius: 12px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
-  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.08);
+  margin-bottom: 18px; /* ✅ space after calculator */
 }
 
 label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: #555;
 }
@@ -53,13 +56,13 @@ label {
 }
 input, select {
   width: 100%;
-  padding: 9px;
-  margin-top: 4px;
-  margin-bottom: 9px;
+  padding: 8px;
+  margin-top: 3px;
+  margin-bottom: 8px;
   border-radius: 6px;
   border: 1px solid #ddd;
-  font-size: 14px;
-  height: 38px;
+  font-size: 13px;
+  height: 34px;
 }
 
 .compact {
@@ -70,24 +73,19 @@ input, select {
 
 input:focus, select:focus {
   border-color: #e85222;
-  box-shadow: 0 0 5px rgba(232,82,34,0.3);
+  box-shadow: 0 0 4px rgba(232,82,34,0.3);
   outline: none;
 }
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: #e85222;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
+  border-radius: 7px;
+  font-size: 14px;
   font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #cf461c;
 }
 
 .result {
@@ -95,7 +93,9 @@ button:hover {
   border-left: 4px solid #e85222;
   padding: 12px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 20px; /* ✅ space after result */
   display: none;
 }
 
@@ -104,9 +104,15 @@ button:hover {
 }
 
 .highlight {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   color: #e85222;
+}
+
+.net {
+  font-size: 15px;
+  font-weight: bold;
+  color: green;
 }
 
 </style>
@@ -210,21 +216,31 @@ let age = parseInt(document.getElementById("age").value);
 if (!P || P<=0){ alert("Enter valid loan amount"); return; }
 if (!insuranceRates[age]){ alert("Age must be 18–60"); return; }
 
+// EMI
 let emi = (P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
 emi = Math.ceil(emi/10)*10;
 
+// Processing Fee
 let pf = P*0.03;
 let total_pf = pf + (pf*0.18);
 
+// Insurance
 let ratePerLakh = insuranceRates[age][n];
 let insurance = (P/100000)*ratePerLakh;
 let total_insurance = insurance + (insurance*0.18);
 
+// Net Disbursement
+let net = P - total_pf - total_insurance;
+
+// Output
 document.getElementById("output").style.display = "block";
 document.getElementById("output").innerHTML = `
 <div>EMI: <span class="highlight">₹${emi}</span></div>
 <div>Processing Fee: ₹${total_pf.toFixed(0)}</div>
 <div>Insurance: ₹${total_insurance.toFixed(0)}</div>
+<hr>
+<div>Customer Gets:</div>
+<div class="net">₹${net.toFixed(0)}</div>
 `;
 
 }
