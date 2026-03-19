@@ -10,13 +10,13 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #e85222; /* full orange background */
+  background: #e85222;
 }
 
 .app-wrapper {
   max-width: 420px;
   margin: auto;
-  background: #fff7f2; /* cream */
+  background: #fff7f2;
   min-height: 100vh;
   padding: 15px;
   box-sizing: border-box;
@@ -57,7 +57,13 @@ input, select {
   border-radius: 6px;
   border: 1px solid #ddd;
   font-size: 14px;
-  height: 20px;
+  height: 38px;
+}
+
+.compact {
+  height: 32px;
+  padding: 6px 8px;
+  font-size: 13px;
 }
 
 input:focus, select:focus {
@@ -115,7 +121,7 @@ button:hover {
 <div class="card">
 
 <label>Loan Amount (₹)</label>
-<input type="number" id="loan">
+<input type="number" id="loan" class="compact">
 
 <label>Tenure</label>
 <select id="tenure">
@@ -134,7 +140,7 @@ button:hover {
 </select>
 
 <label>Borrower Age</label>
-<input type="number" id="age">
+<input type="number" id="age" class="compact">
 
 <button onclick="calculate()">Calculate EMI</button>
 
@@ -146,7 +152,6 @@ button:hover {
 
 <script>
 
-// FULL INSURANCE TABLE
 const insuranceRates = {
 18:{12:213.56,18:296.44,24:377.10,30:458.03,36:536.80},
 19:{12:219.48,18:304.92,24:388.09,30:471.18,36:552.08},
@@ -203,20 +208,16 @@ let age = parseInt(document.getElementById("age").value);
 if (!P || P<=0){ alert("Enter valid loan amount"); return; }
 if (!insuranceRates[age]){ alert("Age must be 18–60"); return; }
 
-// EMI
 let emi = (P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
 emi = Math.ceil(emi/10)*10;
 
-// Processing Fee
 let pf = P*0.03;
 let total_pf = pf + (pf*0.18);
 
-// Insurance
 let ratePerLakh = insuranceRates[age][n];
 let insurance = (P/100000)*ratePerLakh;
 let total_insurance = insurance + (insurance*0.18);
 
-// Show result
 document.getElementById("output").style.display = "block";
 document.getElementById("output").innerHTML = `
 <div>EMI: <span class="highlight">₹${emi}</span></div>
