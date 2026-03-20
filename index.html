@@ -47,9 +47,12 @@ h1 {
 }
 
 label {
+  display: block;
+  width: 100%;
   font-size: 11px;
   font-weight: 600;
   color: #555;
+  margin-bottom: 2px;
 }
 * {
   box-sizing: border-box;
@@ -91,7 +94,7 @@ button {
 .result {
   background: #fff1ea;
   border-left: 4px solid #e85222;
-  padding: 12px;
+  padding: 14px 12px;
   border-radius: 8px;
   font-size: 13px;
   margin-top: 10px;
@@ -239,7 +242,7 @@ document.getElementById("output").innerHTML = `
 <div>Processing Fee: ₹${total_pf.toFixed(0)}</div>
 <div>Insurance: ₹${total_insurance.toFixed(0)}</div>
 <hr>
-<div>Customer Gets:</div>
+<div>Net Disbursement:</div>
 <div class="net">₹${net.toFixed(0)}</div>
 `;
 
