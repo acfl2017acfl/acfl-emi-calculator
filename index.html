@@ -216,7 +216,10 @@ let n = parseInt(document.getElementById("tenure").value);
 let r = parseFloat(document.getElementById("rate").value)/12/100;
 let age = parseInt(document.getElementById("age").value);
 
-if (!P || P<=0){ alert("Enter valid loan amount"); return; }
+if (!P || P < 100000 || P > 500000) {
+  alert("Loan amount must be between ₹1,00,000 and ₹5,00,000");
+  return;
+}
 if (!insuranceRates[age]){ alert("Age must be 18–60"); return; }
 
 // EMI
